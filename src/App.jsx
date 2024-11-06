@@ -4,6 +4,7 @@ import LandingPage from "./pages/landingPage";
 import Signup from "./pages/userauth/Signup";
 import Login from "./pages/userauth/Login";
 import { ToastContainer } from "react-toastify";
+import UserDashboard from "./pages/userDashboard/UserDashboard";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,6 +19,10 @@ function App() {
     {
       path: "/login",
       element: <Login />
+    },
+    {
+      path: "/userdashboard",
+      element: <UserDashboard />
     },
   ]);
   return (

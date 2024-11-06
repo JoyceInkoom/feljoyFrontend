@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
-// import { loginClient } from '../services/api'; // Import your API service
+import 'react-toastify/dist/ReactToastify.css';
+import { apiUserLogin } from "../../services/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,10 +18,11 @@ const Login = () => {
     };
 
     try {
-      const response = await loginClient(userData); // Call the API to log in
-      console.log(response);
-      toast.success("Login successful!"); // Success toast
-      navigate('/dashboard'); // Redirect to the dashboard or desired page
+      const response = await apiUserLogin(userData); // Call the API to log in
+      if (response.status === 200) {
+        toast.success("Login successful!"); // Success toast
+        navigate('/userdashboard'); 
+      }
     } catch (error) {
       console.error(error);
       toast.error("Login failed! Please check your credentials."); // Error toast
@@ -63,9 +64,17 @@ const Login = () => {
               />
             </div>
             <div className="flex flex-col items-center">
-              <button className="mt-[1em] h-[40px] w-[150px] bg-[#0d8a2e] text-center text-[white] font-bold rounded-md shadow-md hover:bg-[#0b5e23] transition-all duration-300" type="submit">Login</button>
+              <button
+                className="mt-[1em] h-[40px] w-[150px] bg-[#0d8a2e] text-center text-[white] font-bold rounded-md shadow-md hover:bg-[#0b5e23] transition-all duration-300"
+                type="submit"
+              >
+                Login
+              </button>
               <p className="mt-[0.5em] mb-[0.5em] text-center">
-                Don't have an account? <Link to="/clientsignup" className="text-[#0d8a2e] font-semibold">Sign Up</Link>
+                Don't have an account?{" "}
+                <Link to="/clientsignup" className="text-[#0d8a2e] font-semibold">
+                  Sign Up
+                </Link>
               </p>
             </div>
           </form>
