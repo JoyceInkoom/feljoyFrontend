@@ -35,7 +35,7 @@ const Navbar = () => {
     <nav className="bg-gray-800 p-4 flex justify-between items-center z-10 relative">
       {/* Logo */}
       <Link to="/" className="text-white text-2xl font-bold">
-        Logo
+        Feljoy
       </Link>
       
       {/* Nav Links */}
@@ -51,7 +51,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/services" className="text-white hover:text-gray-300 flex items-center">
+          <Link to="/resources" className="text-white hover:text-gray-300 flex items-center">
             <FontAwesomeIcon icon={faClipboard} className="mr-1" /> Resources
           </Link>
         </li>

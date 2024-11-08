@@ -11,10 +11,14 @@ const UserDashboard = () => {
         </div>
         <nav className="flex-1 px-6 py-4 space-y-4">
           <NavItem icon={<FaHome />} label="Home" />
-          <NavItem icon={<FaChartPie />} label="Analytics" />
-          <NavItem icon={<FaUser />} label="Users" />
+          <NavItem icon={<FaChartPie />} label="Resources" />
+          <NavItem icon={<FaUser />} label="Peer Therapists" />
+          <NavItem icon={<FaUser />} label="Professional Therapists" />
           <NavItem icon={<FaCog />} label="Settings" />
         </nav>
+        <button className="flex items-center w-full text-white">
+            Become A Support
+          </button>
         <div className="px-6 py-4 border-t border-gray-700">
           <button className="flex items-center w-full text-red-400 hover:text-red-500">
             <FaSignOutAlt className="mr-2" />
@@ -47,16 +51,16 @@ const UserDashboard = () => {
 
           {/* Stats Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-            <StatsCard title="Total Users" value="1,254" />
-            <StatsCard title="Revenue" value="$32,700" />
-            <StatsCard title="New Signups" value="172" />
+            <StatsCard title="Total Interactions" value="1,254" />
+            <StatsCard title="Engaged Resources" value="$32,700" />
+            <StatsCard title="Note To Self" value="172" />
             <StatsCard title="Support Tickets" value="56" />
           </div>
 
           {/* Charts or Other Components Placeholder */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="p-6 bg-white shadow rounded-lg">
-              <h3 className="font-semibold text-lg mb-4">Sales Analytics</h3>
+              <h3 className="font-semibold text-lg mb-4">Mental State Analytics</h3>
               <div className="h-48 bg-gray-200 rounded-lg"></div> {/* Chart Placeholder */}
             </div>
             <div className="p-6 bg-white shadow rounded-lg">

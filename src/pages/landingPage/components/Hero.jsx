@@ -1,61 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-// Import your images for the background
-import backgroundImage1 from "../../../assets/images/emojis.jpg";
-import backgroundImage2 from "../../../assets/images/sad.jpg";
-import backgroundImage3 from "../../../assets/images/happy1.jpg";
-import backgroundImage4 from "../../../assets/images/moody.jpg";
-import backgroundImage5 from "../../../assets/images/happy2.jpg";
-import backgroundImage6 from "../../../assets/images/hug.jpg";
-import backgroundImage7 from "../../../assets/images/smile.jpg";
-
+// Online background images
 const images = [
-  backgroundImage1,
-  backgroundImage2,
-  backgroundImage3,
-  backgroundImage4,
-  backgroundImage5,
-  backgroundImage6,
-  backgroundImage7,
+  "https://i.pinimg.com/564x/e5/ff/b0/e5ffb02f7e2ce779322b2e0e2ba1e91a.jpg",
+  "https://i.pinimg.com/564x/40/f1/84/40f1847c48c6453c00980084061b259d.jpg",
+  "https://i.pinimg.com/564x/4c/56/03/4c5603cef6dbc47a718e18a8b48440d5.jpg",
+  "https://i.pinimg.com/564x/43/f1/be/43f1beadbe7aaa6dafebdeb0d002a306.jpg",
+  "https://i.pinimg.com/736x/c6/d3/cc/c6d3cc853b5bcfe66c4940bc8501a416.jpg",
+  "https://i.pinimg.com/564x/28/05/16/280516cb01e460afc92e993c60d8b06b.jpg",
+  "https://i.pinimg.com/564x/c7/46/11/c746117bed3e6951bfc9043916c612d5.jpg",
 ];
 
 const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [typedText, setTypedText] = useState("");
-  const textToType = "Your mental health matters! Get the support you need."; // Typewriter text
+  const textToDisplay =
+    "Your Mental health matters! Get the support you need...."; // Static text
 
+  // Change background images every 3 seconds
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // Change image every 3 seconds
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, []);
 
-  useEffect(() => {
-    let typingTimeout;
-    let index = 0;
-
-    const typeWriterEffect = () => {
-      if (index < textToType.length) {
-        setTypedText((prev) => prev + textToType.charAt(index));
-        index++;
-        typingTimeout = setTimeout(typeWriterEffect, 100);
-      } else {
-        clearTimeout(typingTimeout); // Clear timeout once the text is fully typed
-      }
-    };
-
-    typeWriterEffect();
-
-    return () => clearTimeout(typingTimeout); // Clear timeout on component unmount
-  }, [textToType]); // Add textToType as dependency
-
   return (
     <div className="relative w-full h-screen overflow-hidden">
+      {/* Background image */}
       <div
         className="absolute inset-0 transition-opacity duration-1000"
         style={{
@@ -65,16 +40,17 @@ const Hero = () => {
         }}
       ></div>
 
+      {/* Overlay with text */}
       <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50">
-        <h1 className="text-4xl md:text-6xl text-white  text-center mb-4">
-          {typedText}
-        </h1>
-        <p className="text-lg text-white text-center mb-6">
+        <h3 className="text-xl md:text-6xl text-white text-center mb-4 animate-bounce">
+          {textToDisplay}
+        </h3>
+        <p className="text-xl text-white text-center mb-6">
           Discover resources and support for mental well-being.
         </p>
         <Link
-          to="/login"
-          className="mt-4 bg-orange-500 text-white py-2 px-6 rounded-md hover:bg-orange-400 transition-colors"
+          to="/signup"
+          className="mt-4 bg-gray-800 text-white py-2 px-6 rounded-md hover:bg-orange-400 transition-colors"
         >
           Get Started
         </Link>

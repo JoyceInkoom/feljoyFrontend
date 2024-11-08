@@ -43,13 +43,13 @@ const Signup = () => {
   };
 
   return (
-    <section className="h-[100vh] bg-[#c5e0b5] py-[3%] px-[15%]">
+    <section className="h-[100vh] bg-gray-800 py-[3%] px-[15%]">
       <ToastContainer />
       <div className="h-[100%] bg-white w-[100%] rounded-3xl flex">
-        <div className="w-[30%] bg-[#0d8a2e] rounded-3xl"></div>
+        <div className="w-[30%] bg-gray-500 rounded-3xl bg-[url('https://i.pinimg.com/564x/45/22/f4/4522f470b71fcc72bfecd9ea37d12c68.jpg')] bg-cover bg-center"></div>
         <div className="w-[75%] bg-[white] rounded-3xl z-1 flex flex-col pt-[3%] pl-[5%] pr-[5%]">
           <div className="h-[10%] mb-[0.5em] flex">
-            <h1 className="text-[1.8em] font-semibold">Welcome, Create an account with us</h1>
+            <h1 className="text-[1.8em] font-semibold">Welcome! Start by Signing Up</h1>
           </div>
           <form onSubmit={handleSignup} className="grid grid-rows-3 grid-cols-2 gap-x-[15%] px-[5%]">
             <div className="h-[100%] pb-[1em] pl-[0.5em]">
@@ -110,13 +110,13 @@ const Signup = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <div className="ml-[-1em] cursor-pointer text-[#0d8a2e]" onClick={toggleVisibility}>
+                <div className="ml-[-1em] cursor-pointer text-gray-800" onClick={toggleVisibility}>
                   <FontAwesomeIcon icon={showPass ? faEye : faEyeSlash} />
                 </div>
               </div>
             </div>
             <button
-              className="col-span-2 mt-[1em] h-[40px] w-[150px] bg-[#0d8a2e] text-center text-[white] font-bold rounded-md shadow-md hover:bg-[#0b5e23] transition-all duration-300"
+              className="col-span-2 mt-[1em] h-[40px] w-[150px] bg-gray-800 text-center text-[white] font-bold rounded-md shadow-md hover:bg-[#0b5e23] transition-all duration-300"
               type="submit"
             >
               Sign Up
@@ -124,7 +124,7 @@ const Signup = () => {
           </form>
           <div className="flex flex-col items-start pl-[5%]">
             <p className="mt-[1em] mb-[0.5em] text-center">
-              Already have an account? <Link to="/login" className="text-[#0d8a2e] font-semibold">Log in</Link>
+              Already have an account? <Link to="/login" className="text-gray-900 font-semibold">Log in</Link>
             </p>
           </div>
         </div>
