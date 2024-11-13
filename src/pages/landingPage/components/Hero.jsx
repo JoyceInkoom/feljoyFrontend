@@ -15,7 +15,7 @@ const images = [
 const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const textToDisplay =
-    "Your Mental health matters! Get the support you need...."; // Static text
+    "Your Mental health matters!!"; // Static text
 
   // Change background images every 3 seconds
   useEffect(() => {
@@ -23,7 +23,7 @@ const Hero = () => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000);
+    }, 2000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -45,12 +45,15 @@ const Hero = () => {
         <h3 className="text-xl md:text-6xl text-white text-center mb-4 animate-bounce">
           {textToDisplay}
         </h3>
-        <p className="text-xl text-white text-center mb-6">
-          Discover resources and support for mental well-being.
-        </p>
+        {/* <div className="bg-gray-800 text-center p-1 rounded-lg shadow-sm"> */}
+  <p className="text-xl text-white mb-2">
+  Get the support you need....
+  </p>
+{/* </div> */}
+
         <Link
           to="/signup"
-          className="mt-4 bg-gray-800 text-white py-2 px-6 rounded-md hover:bg-orange-400 transition-colors"
+          className="mt-4 bg-indigo-900 text-white py-2 px-6 rounded-md hover:bg-orange-400 transition-colors"
         >
           Get Started
         </Link>

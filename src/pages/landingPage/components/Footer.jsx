@@ -4,7 +4,7 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white pt-10">
+    <footer className="bg-indigo-800 text-white pt-10">
       {/* Upper Footer Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8 pb-8">
@@ -55,7 +55,7 @@ const Footer = () => {
       </div>
 
       {/* Lower Footer Section */}
-      <div className="bg-black py-4 ">
+      <div className="bg-indigo-950 py-4 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-white">
           <p>&copy; {new Date().getFullYear()} Feljoy. All rights reserved.</p>
           <p>

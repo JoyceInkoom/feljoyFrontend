@@ -32,7 +32,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-800 p-4 flex justify-between items-center z-10 relative">
+    <nav className="bg-indigo-800 p-4 flex justify-between items-center z-10 relative">
       {/* Logo */}
       <Link to="/" className="text-white text-2xl font-bold">
         Feljoy

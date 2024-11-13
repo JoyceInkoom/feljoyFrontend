@@ -54,7 +54,7 @@ const UserDashboard = () => {
             <StatsCard title="Total Interactions" value="1,254" />
             <StatsCard title="Engaged Resources" value="$32,700" />
             <StatsCard title="Note To Self" value="172" />
-            <StatsCard title="Support Tickets" value="56" />
+            <StatsCard title="Support" value="56" />
           </div>
 
           {/* Charts or Other Components Placeholder */}

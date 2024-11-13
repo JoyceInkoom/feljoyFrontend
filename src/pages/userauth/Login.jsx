@@ -30,10 +30,10 @@ const Login = () => {
   };
 
   return (
-    <section className="h-screen bg-gray-800 flex items-center justify-center bg-[url('https://i.pinimg.com/564x/db/28/74/db287451e204eb9c5f334a811e9bab47.jpg')] bg-cover bg-center">
+    <section className="h-screen bg-indigo-100 flex items-center justify-center bg-[url('https://i.pinimg.com/736x/0e/f2/93/0ef293a334abb9a3daa976e1e34b9fd5.jpg')] bg-cover bg-center">
       <ToastContainer /> 
       <div className="bg-white rounded-3xl flex shadow-lg w-[90%] max-w-[500px]">
-        <div className="w-[30%] bg-gray-800 rounded-3xl"></div>
+        <div className="w-[30%] bg-indigo-100 rounded-3xl"></div>
         <div className="w-[70%] bg-[white] rounded-3xl z-1 flex flex-col pt-[3%] pl-[5%] pr-[5%]">
           <div className="h-[10%] mb-[2em] flex">
             <h1 className="text-[1.8em] font-semibold">Welcome Back!</h1>
@@ -65,14 +65,14 @@ const Login = () => {
             </div>
             <div className="flex flex-col items-center">
               <button
-                className="mt-[1em] h-[40px] w-[150px] bg-gray-800 text-center text-[white] font-bold rounded-md shadow-md hover:bg-[#0b5e23] transition-all duration-300"
+                className="mt-[1em] h-[40px] w-[150px] bg-indigo-200 text-center text-black  rounded-md shadow-md hover:bg-indigo-800 transition-all duration-300"
                 type="submit"
               >
                 Login
               </button>
               <p className="mt-[0.5em] mb-[0.5em] text-center">
                 Don't have an account?{" "}
-                <Link to="/signup" className="text-gray-900 font-semibold">
+                <Link to="/signup" className="text-indigo-900 font-semibold">
                   Sign Up
                 </Link>
               </p>

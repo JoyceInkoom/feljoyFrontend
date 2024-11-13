@@ -7,6 +7,8 @@ import Support from './components/Support';
 import ContactUs from './components/ContactUs';
 import BecomeSupport from './components/BecomeSupport';
 import WantToKnowMore from './components/WantToKnowMore';
+import Resources from './components/Resources';
+import News from './components/News';
 
 const LandingPage = () => {
   return (
@@ -14,8 +16,10 @@ const LandingPage = () => {
     <Navbar />
     <Hero />
     <AboutUs />
+    <News />
     <Support />
     <WantToKnowMore />
+    <Resources />
     <BecomeSupport />
     <ContactUs />
     <Footer />
