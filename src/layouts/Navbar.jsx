@@ -1,0 +1,57 @@
+import React from "react";
+import {
+  FaSearch,
+  FaDumbbell,
+  FaBookOpen,
+  FaSmile,
+  FaUserCircle,
+} from "react-icons/fa";
+
+const Navbar = ({ userProfile }) => (
+  <header className="flex items-center justify-between p-4 bg-indigo-200 shadow fixed top-0 left-[256px] w-[calc(100%-256px)] z-50">
+    <div className="flex items-center space-x-2">
+      <FaSearch className="text-gray-500" />
+      <input
+        type="text"
+        placeholder="Search"
+        className="w-full max-w-xs p-2 border rounded-lg outline-none focus:ring focus:ring-blue-200"
+      />
+    </div>
+    <div className="flex items-center space-x-4">
+      <div
+        className="flex items-center space-x-2 cursor-pointer"
+        onClick={() => (window.location.href = "/exercise")}
+      >
+        <FaDumbbell className="text-black" />
+        <span className="text-black">Exercise</span>
+      </div>
+      <div
+        className="flex items-center space-x-2 cursor-pointer"
+        onClick={() => (window.location.href = "/emotiondairy")}
+      >
+        <FaBookOpen className="text-black" />
+        <span className="text-black">Emotion Diary</span>
+      </div>
+      <div
+        className="flex items-center space-x-2 cursor-pointer"
+        onClick={() => (window.location.href = "/stressball")}
+      >
+        <FaSmile className="text-black" />
+        <span className="text-black">Stress Ball</span>
+      </div>
+      <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
+        {userProfile?.profilePicture ? (
+          <img
+            src={`https://savefiles.org/secure/uploads/${userProfile?.profilePicture}?shareable_link=468`}
+            alt={userProfile?.userName}
+            className="w-full h-full rounded-full object-cover"
+          />
+        ) : (
+          <FaUserCircle className="w-full h-full text-black" />
+        )}
+      </div>
+    </div>
+  </header>
+);
+
+export default Navbar;

@@ -20,18 +20,20 @@ const Login = () => {
     try {
       const response = await apiUserLogin(userData); // Call the API to log in
       if (response.status === 200) {
+        const { accessToken } = response.data; // Ensure correct destructuring for token
+        localStorage.setItem("authToken", accessToken); // Store the token in localStorage
         toast.success("Login successful!"); // Success toast
-        navigate('/userdashboard'); 
+        navigate('/userdashboard'); // Redirect to dashboard
       }
     } catch (error) {
-      console.error(error);
+      console.error("Login failed:", error);
       toast.error("Login failed! Please check your credentials."); // Error toast
     }
   };
 
   return (
     <section className="h-screen bg-indigo-100 flex items-center justify-center bg-[url('https://i.pinimg.com/736x/0e/f2/93/0ef293a334abb9a3daa976e1e34b9fd5.jpg')] bg-cover bg-center">
-      <ToastContainer /> 
+      <ToastContainer />
       <div className="bg-white rounded-3xl flex shadow-lg w-[90%] max-w-[500px]">
         <div className="w-[30%] bg-indigo-100 rounded-3xl"></div>
         <div className="w-[70%] bg-[white] rounded-3xl z-1 flex flex-col pt-[3%] pl-[5%] pr-[5%]">
