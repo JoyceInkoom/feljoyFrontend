@@ -43,10 +43,10 @@ const Signup = () => {
   };
 
   return (
-    <section className="h-[100vh] bg-indigo-100 py-[3%] px-[15%]">
+    <section className="h-[100vh] bg-indigo-900 py-[3%] px-[15%]">
       <ToastContainer />
-      <div className="h-[100%] bg-white w-[100%] rounded-3xl flex">
-        <div className="w-[30%] bg-gray-500 rounded-3xl bg-[url('https://i.pinimg.com/564x/45/22/f4/4522f470b71fcc72bfecd9ea37d12c68.jpg')] bg-cover bg-center"></div>
+      <div className="h-[100%] bg-white w-[100%]  flex">
+        <div className="w-[30%] bg-gray-500  bg-[url('https://i.pinimg.com/564x/45/22/f4/4522f470b71fcc72bfecd9ea37d12c68.jpg')] bg-cover bg-center"></div>
         <div className="w-[75%] bg-[white] rounded-3xl z-1 flex flex-col pt-[3%] pl-[5%] pr-[5%]">
           <div className="h-[10%] mb-[0.5em] flex">
             <h1 className="text-[1.8em] font-semibold">Welcome! Start by Signing Up</h1>

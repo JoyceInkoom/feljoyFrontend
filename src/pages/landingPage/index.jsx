@@ -9,6 +9,7 @@ import BecomeSupport from './components/BecomeSupport';
 import WantToKnowMore from './components/WantToKnowMore';
 import Resources from './components/Resources';
 import News from './components/News';
+import Features from './components/Features';
 
 const LandingPage = () => {
   return (
@@ -18,6 +19,7 @@ const LandingPage = () => {
     <AboutUs />
     <News />
     <Support />
+    <Features />
     <WantToKnowMore />
     <Resources />
     <BecomeSupport />

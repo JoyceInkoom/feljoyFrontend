@@ -15,6 +15,11 @@ import PeerTherapistDetail from "./pages/userDashboard/PeerTherapistDetail";
 import ProfessionalTherapistsList from "./pages/userDashboard/professional/ProfessionalTherapistList";
 import ProfessionalTherapistDetail from "./pages/userDashboard/professional/ProfessionalTherapistDetails";
 import EmotionDiaryPage from "./pages/items/EmotionDairyPage";
+import ExercisePage from "./pages/items/ExercisePage";
+import ArticleDetails from "./pages/landingPage/components/ArticlesDetails";
+import ArticlesList from "./pages/landingPage/components/ArticlesList";
+import ResourcesPage from "./pages/items/ResourcesPage";
+import ResourceDetailsPage from "./pages/items/ResourceDetailsPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -55,6 +60,10 @@ function App() {
       element: <StressBallPage />
     },
     {
+      path: "/meditation",
+      element: <ExercisePage />
+    },
+    {
       path: "/assessment",
       element: <AssessmentPage />
     },
@@ -74,6 +83,22 @@ function App() {
       path: "/professional-therapist/:id",
       element: <ProfessionalTherapistDetail />
     },
+    {
+      path: "/articles",
+      element: <ArticlesList />
+    },
+    {
+      path: "/articles/:id",
+      element: <ArticleDetails />
+    },
+    {
+      path: "/resources",
+      element: <ResourcesPage />
+    },
+  {
+    path: "/resource/:type/:id",
+    element: <ResourceDetailsPage />
+  }
   ]);
   return (
     <><RouterProvider router={router} />

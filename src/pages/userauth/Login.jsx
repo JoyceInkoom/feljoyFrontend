@@ -32,17 +32,17 @@ const Login = () => {
   };
 
   return (
-    <section className="h-screen bg-indigo-100 flex items-center justify-center bg-[url('https://i.pinimg.com/736x/0e/f2/93/0ef293a334abb9a3daa976e1e34b9fd5.jpg')] bg-cover bg-center">
+    <section className="h-screen bg-indigo-900 flex items-center justify-center bg-[url('https://i.pinimg.com/736x/0e/f2/93/0ef293a334abb9a3daa976e1e34b9fd5.jpg')] bg-cover bg-center">
       <ToastContainer />
-      <div className="bg-white rounded-3xl flex shadow-lg w-[90%] max-w-[500px]">
-        <div className="w-[30%] bg-indigo-100 rounded-3xl"></div>
+      <div className="bg-white  flex shadow-lg w-[90%] max-w-[500px]">
+        <div className="w-[30%] bg-indigo-900"></div>
         <div className="w-[70%] bg-[white] rounded-3xl z-1 flex flex-col pt-[3%] pl-[5%] pr-[5%]">
           <div className="h-[10%] mb-[2em] flex">
             <h1 className="text-[1.8em] font-semibold">Welcome Back!</h1>
           </div>
           <form onSubmit={handleLogin} className="flex flex-col">
             <div className="h-[100%] pb-[1em] pl-[0.5em]">
-              <label htmlFor="email">Email</label>
+              <label className="mr-1" htmlFor="email">Email</label>
               <input
                 type="email"
                 id="email"
@@ -54,7 +54,7 @@ const Login = () => {
               />
             </div>
             <div className="h-[100%] pb-[1em] pl-[0.5em]">
-              <label htmlFor="password">Password</label>
+              <label className="mr-1" htmlFor="password">Password</label>
               <input
                 type="password"
                 id="password"

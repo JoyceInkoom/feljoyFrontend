@@ -12,7 +12,7 @@ const NavItem = ({ icon, label, onClick }) => (
     onClick={onClick}
   >
     <span className="text-xl">{icon}</span>
-    <span className="text-gray-700 font-bold">{label}</span>
+    <span className="text-white font-bold">{label}</span>
   </div>
 );
 
@@ -40,17 +40,17 @@ const UserDashboard = () => {
   }, []);
 
   const getVerifiedIconColor = (role) => {
-    if (role === "user") return "text-indigo-800";
-    if (role === "peer therapist") return "text-blue-800";
-    if (role === "therapist") return "text-pink-800";
+    if (role === "user") return "text-green-500";
+    if (role === "peer-therapist") return "text-orange-500";
+    if (role === "professional-therapist") return "text-pink-500";
     return "text-gray-500";
   };
 
   return (
     <div className="flex h-screen bg-white">
       {/* Sidebar */}
-      <aside className="w-64 bg-indigo-200 text-gray-800 flex flex-col">
-        <div className="pt-4 text-center font-bold text-lg border-b border-gray-700">
+      <aside className="w-64 bg-indigo-900 text-white flex flex-col">
+        <div className="pt-4 text-center font-bold text-lg border-b border-white">
           Your Mental Health Companion
         </div>
 
@@ -64,7 +64,7 @@ const UserDashboard = () => {
                 className="w-full h-full rounded-full object-cover"
               />
             ) : (
-              <FaUserCircle className="w-full h-full text-gray-500" />
+              <FaUserCircle className="w-full h-full text-white" />
             )}
             <FaEdit
               className="absolute bottom-0 right-0 bg-white text-gray-500 rounded-full p-1 cursor-pointer"
@@ -86,21 +86,21 @@ const UserDashboard = () => {
 
         {/* Navigation Links */}
         <nav className="flex-1 px-6 py-4 space-y-4">
-          <NavItem icon={<FaHome className="text-black" />} label="Home" onClick={() => (window.location.href = "/")} />
-          <NavItem icon={<FaChartPie className="text-black" />} label="Resources" onClick={() => (window.location.href = "/")}/>
-          <NavItem icon={<FaUser className="text-black" />} label="Peer Therapists" onClick={() => (window.location.href = "/peer-therapists")}/>
-          <NavItem icon={<FaUser className="text-black" />} label="Professional Therapists" onClick={() => (window.location.href = "/professional-therapists")}/>
-          <NavItem icon={<FaPen className="text-black" />} label="Take Assessment" onClick={() => (window.location.href = "/assessment")}/>
-          <NavItem icon={<FaDumbbell className="text-black" />} label="Let's Celebrate with You" onClick={() => (window.location.href = "/")}/>
-          <NavItem icon={<FaBookOpen className="text-black" />} label="Events" onClick={() => (window.location.href = "/")}/>
+          <NavItem icon={<FaHome className="text-white" />} label="Home" onClick={() => (window.location.href = "/")} />
+          <NavItem icon={<FaChartPie className="text-white" />} label="Resources" onClick={() => (window.location.href = "/resources")}/>
+          <NavItem icon={<FaUser className="text-white" />} label="Peer Therapists" onClick={() => (window.location.href = "/peer-therapists")}/>
+          <NavItem icon={<FaUser className="text-white" />} label="Professional Therapists" onClick={() => (window.location.href = "/professional-therapists")}/>
+          <NavItem icon={<FaPen className="text-white" />} label="Take Assessment" onClick={() => (window.location.href = "/assessment")}/>
+          <NavItem icon={<FaDumbbell className="text-white" />} label="Let's Celebrate with You" onClick={() => (window.location.href = "/")}/>
+          <NavItem icon={<FaBookOpen className="text-white" />} label="Celebrations" onClick={() => (window.location.href = "/")}/>
         </nav>
         
-        <div className="px-6 py-4 border-t border-gray-700">
+        <div className="px-6 py-4 border-t border-white">
         <button
-  className="flex items-center w-full text-red-800 hover:text-red-500"
+  className="flex items-center w-full text-red-500 hover:text-red-800"
   onClick={() => {
-    localStorage.removeItem("authToken"); // Remove authentication token
-    window.location.href = "/"; // Redirect to homepage
+    localStorage.removeItem("authToken"); 
+    window.location.href = "/"; 
   }}
 >
   <FaSignOutAlt className="mr-2" />
@@ -113,9 +113,9 @@ const UserDashboard = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Top Navbar */}
-        <header className="flex items-center justify-between p-4 bg-indigo-200 shadow">
+        <header className="flex items-center justify-between p-4 bg-indigo-900 shadow">
           <div className="flex items-center space-x-2">
-            <FaSearch className="text-gray-500" />
+            <FaSearch className="text-white" />
             <input
               type="text"
               placeholder="Search"
@@ -125,19 +125,19 @@ const UserDashboard = () => {
           <div className="flex items-center space-x-4">
   {/* Navbar icons with tooltips, Apply black color only to navbar items */}
   <NavItem 
-    icon={<FaDumbbell className="text-black" />} 
-    label="Exercise" 
-    onClick={() => (window.location.href = "/exercise")}
+    icon={<FaDumbbell className="text-white" />} 
+    label="Meditation" 
+    onClick={() => (window.location.href = "/meditaion")}
     customClass="text-black" // Apply black text only for this nav item
   />
   <NavItem 
-    icon={<FaBookOpen className="text-black" />} 
+    icon={<FaBookOpen className="text-white" />} 
     label="Emotion Diary" 
     onClick={() => (window.location.href = "/emotiondairy")}
     customClass="text-black" 
   />
   <NavItem 
-    icon={<FaSmile className="text-black" />} 
+    icon={<FaSmile className="text-white" />} 
     label="Stress Ball" 
     onClick={() => (window.location.href = "/stressball")}
     customClass="text-black"

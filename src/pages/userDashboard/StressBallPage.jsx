@@ -67,7 +67,7 @@ const StressBallPage = () => {
       <div className="flex flex-col w-full">
         {/* <Navbar /> */}
 
-        <div className="flex flex-col items-center justify-center p-4 text-center h-[calc(100vh-7rem)]">
+        <div className="flex flex-col items-center justify-center p-4 mt-6 text-center h-[calc(100vh-7rem)]">
           <h1 className="text-2xl font-bold mb-6">Choose Your Stress Ball</h1>
 
           <div className="flex space-x-4 mb-8">

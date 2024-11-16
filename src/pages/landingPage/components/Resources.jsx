@@ -32,12 +32,6 @@ const mentalHealthData = [
     link: "https://www.rxlist.com/api/",
   },
   {
-    title: "Crisis Text Line",
-    description: "Text HOME to 741741 for crisis support.",
-    icon: faPhone,
-    link: "https://www.crisistextline.org/",
-  },
-  {
     title: "Mental Health Community",
     description: "Connect with others for support and discussion.",
     icon: faComments,
@@ -61,16 +55,16 @@ const mentalHealthData = [
 const Resources = () => {
   return (
     <div
-      className="min-h-screen bg-cover bg-center"
+      className="min-h-screen bg-cover bg-center mt-16"
       style={{
-        backgroundImage: `url(https://images.unsplash.com/photo-1551183055-3936d27d7efc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)`,
+        backgroundImage: `url(https://i.pinimg.com/236x/7a/f1/72/7af172555ff49224b2dbdee26875d930.jpg)`,
       }}
     >
       <div className="p-6 bg-white bg-opacity-20 rounded-lg shadow-lg max-w-6xl mx-auto mt-0">
-        <h2 className="text-3xl font-bold text-center mb-6">
+        <h2 className="text-3xl font-bold text-center mb-6 mt-16">
           Mental Health Resources
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {mentalHealthData.map((resource, index) => (
             <div
               key={index}

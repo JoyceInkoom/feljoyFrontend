@@ -8,9 +8,9 @@ import {
 } from "react-icons/fa";
 
 const Navbar = ({ userProfile }) => (
-  <header className="flex items-center justify-between p-4 bg-indigo-200 shadow fixed top-0 left-[256px] w-[calc(100%-256px)] z-50">
+  <header className="flex items-center justify-between p-4 bg-indigo-900 shadow fixed top-0 left-[256px] w-[calc(100%-256px)] z-50">
     <div className="flex items-center space-x-2">
-      <FaSearch className="text-gray-500" />
+      <FaSearch className="text-white" />
       <input
         type="text"
         placeholder="Search"
@@ -22,22 +22,22 @@ const Navbar = ({ userProfile }) => (
         className="flex items-center space-x-2 cursor-pointer"
         onClick={() => (window.location.href = "/exercise")}
       >
-        <FaDumbbell className="text-black" />
-        <span className="text-black">Exercise</span>
+        <FaDumbbell className="text-white" />
+        <span className="text-white">Exercise</span>
       </div>
       <div
         className="flex items-center space-x-2 cursor-pointer"
         onClick={() => (window.location.href = "/emotiondairy")}
       >
-        <FaBookOpen className="text-black" />
-        <span className="text-black">Emotion Diary</span>
+        <FaBookOpen className="text-white" />
+        <span className="text-white">Emotion Diary</span>
       </div>
       <div
         className="flex items-center space-x-2 cursor-pointer"
         onClick={() => (window.location.href = "/stressball")}
       >
-        <FaSmile className="text-black" />
-        <span className="text-black">Stress Ball</span>
+        <FaSmile className="text-white" />
+        <span className="text-white">Stress Ball</span>
       </div>
       <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
         {userProfile?.profilePicture ? (

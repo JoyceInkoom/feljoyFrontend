@@ -53,7 +53,7 @@ const BecomeSupport = () => {
 
         {/* Professional Therapist Option */}
         <div className="relative bg-white border border-gray-200 p-6 rounded-xl shadow-lg transition transform hover:-translate-y-1 hover:shadow-2xl">
-          <FaUserMd className="absolute top-6 right-6 text-green-400 text-3xl" />
+          <FaUserMd className="absolute top-6 right-6 text-indigo-900 text-3xl" />
           <img
             src="https://i.pinimg.com/564x/b9/77/a8/b977a8b40a6a66676986a0dd25483f65.jpg"
             alt="Professional Therapist"
@@ -67,7 +67,7 @@ const BecomeSupport = () => {
           </p>
           <Link
             to="/signup"
-            className="inline-block bg-green-600 text-white py-2 px-5 rounded-full font-medium text-sm transition transform hover:bg-green-700 hover:-translate-y-0.5"
+            className="inline-block bg-indigo-900 text-white py-2 px-5 rounded-full font-medium text-sm transition transform hover:bg-green-700 hover:-translate-y-0.5"
           >
             Sign Up as Professional Therapist
           </Link>

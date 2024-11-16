@@ -10,7 +10,7 @@ const UpdateProfile = () => {
     userName: '',
     fullName: '',
     phone: '',
-    password: '',
+    // password: '',
     profilePicture: ''
   });
   const [file, setFile] = useState(null);
@@ -25,7 +25,7 @@ const UpdateProfile = () => {
           userName: response.data.userName,
           fullName: response.data.fullName,
           phone: response.data.phone,
-          password: '',
+          // password: '',
           profilePicture: response.data.profilePicture || ''
         });
         setPreview(response.data.profilePicture); 
@@ -56,7 +56,7 @@ const UpdateProfile = () => {
     formData.append("userName", userProfile.userName);
     formData.append("fullName", userProfile.fullName);
     formData.append("phone", userProfile.phone);
-    formData.append("password", userProfile.password);
+    // formData.append("password", userProfile.password);
 
     if (file) {
       formData.append("profilePicture", file);
@@ -141,7 +141,7 @@ const UpdateProfile = () => {
                   className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                 />
               </div>
-              <div className="flex-1">
+              {/* <div className="flex-1">
                 <label className="text-sm font-medium text-gray-700">Password</label>
                 <input
                   type="password"
@@ -150,7 +150,7 @@ const UpdateProfile = () => {
                   onChange={handleInputChange}
                   className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                 />
-              </div>
+              </div> */}
             </div>
 
             {/* Buttons */}
