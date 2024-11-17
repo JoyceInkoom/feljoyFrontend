@@ -18,7 +18,21 @@ const emotions = [
   { label: "Surprised", emoji: "😲" },
   { label: "Anxious", emoji: "😨" },
   { label: "Loved", emoji: "❤️" },
+  { label: "Mixed", emoji: "😕🤔😌" },
+  { label: "Hopeful", emoji: "🤞" },
+  { label: "Proud", emoji: "😌" },
+  { label: "Lonely", emoji: "😔" },
+  { label: "Fearful", emoji: "😱" },
+  { label: "Silly", emoji: "🤪" },
+  { label: "Disappointed", emoji: "😞" },
+  { label: "Embarrassed", emoji: "😳" },
+  { label: "Relieved", emoji: "😅" },
+  { label: "Jealous", emoji: "😒" },
+  
+  
+  
 ];
+
 
 const EmotionDiaryPage = () => {
   const [emotion, setEmotion] = useState("");

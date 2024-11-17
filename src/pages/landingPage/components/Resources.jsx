@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
   faBook,
-  faPhone,
   faComments,
   faHandshake,
   faCapsules,

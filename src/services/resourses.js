@@ -59,3 +59,27 @@ export const getAllArticles = async () => {
           throw error;
       }
   };
+
+  export const apiAddArticle = async (payload) => {
+    const token = localStorage.getItem("authToken");
+
+    return await apiClient.post("/resources/article", payload, {
+        headers: { Authorization: `Bearer ${token}` },
+    });
+};
+
+export const apiAddVideo = async (payload) => {
+  const token = localStorage.getItem("authToken");
+
+  return await apiClient.post("/resources/video", payload, {
+      headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const apiAddEbook = async (payload) => {
+  const token = localStorage.getItem("authToken");
+
+  return await apiClient.post("/resources/book", payload, {
+      headers: { Authorization: `Bearer ${token}` },
+  });
+};

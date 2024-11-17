@@ -16,10 +16,15 @@ import ProfessionalTherapistsList from "./pages/userDashboard/professional/Profe
 import ProfessionalTherapistDetail from "./pages/userDashboard/professional/ProfessionalTherapistDetails";
 import EmotionDiaryPage from "./pages/items/EmotionDairyPage";
 import ExercisePage from "./pages/items/ExercisePage";
-import ArticleDetails from "./pages/landingPage/components/ArticlesDetails";
-import ArticlesList from "./pages/landingPage/components/ArticlesList";
 import ResourcesPage from "./pages/items/ResourcesPage";
-import ResourceDetailsPage from "./pages/items/ResourceDetailsPage";
+import PtDashboard from "./pages/pt dashboard/PtDashboard";
+import ChatRoom from "./pages/items/Chatroom";
+import AddArticleForm from "./pages/items/AddArticleForm";
+import AddVideoForm from "./pages/items/AddVideoForm";
+import AddEbookForm from "./pages/items/AddEbookForm";
+import ArticleDetails from "./pages/items/ArticleDetails";
+import VideoDetails from "./pages/items/VideoDetails";
+import EbookDetails from "./pages/items/EBookDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -84,21 +89,45 @@ function App() {
       element: <ProfessionalTherapistDetail />
     },
     {
-      path: "/articles",
-      element: <ArticlesList />
-    },
-    {
-      path: "/articles/:id",
-      element: <ArticleDetails />
-    },
-    {
       path: "/resources",
       element: <ResourcesPage />
     },
+    {
+      path: "/resources/article/:id",
+      element: <ArticleDetails />
+    },
+    {
+      path: "/resources/video/:id",
+      element: <VideoDetails />
+    },
+    {
+      path: "/resources/book/:id",
+      element: <EbookDetails />
+    },
+  // {
+  //   path: "/resource/:type/:id",
+  //   element: <ResourceDetailsPage />
+  // },
   {
-    path: "/resource/:type/:id",
-    element: <ResourceDetailsPage />
-  }
+    path: "/chatroom/:id",
+    element: <ChatRoom/>
+  },
+  {
+    path: "/therapist-dashboard",
+    element: <PtDashboard />
+  },
+  {
+    path: "/addarticle",
+    element: <AddArticleForm />
+  },
+  {
+    path: "/addvideo",
+    element: <AddVideoForm />
+  },
+  {
+    path: "/addebook",
+    element: <AddEbookForm />
+  },
   ]);
   return (
     <><RouterProvider router={router} />

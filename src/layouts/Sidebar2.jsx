@@ -4,20 +4,23 @@ import {
   FaHome,
   FaChartPie,
   FaUser,
+  FaCog,
   FaCheckCircle,
   FaSignOutAlt,
   FaEdit,
   FaUserCircle,
+  FaDumbbell,
   FaBookOpen,
   FaPen,
   FaChevronLeft,
   FaChevronRight,
-  FaHandHoldingHeart,
-  FaSuitcase,
+  FaVideo,
+  FaReadme,
+  
 } from "react-icons/fa";
 import { apiUserProfile } from "../services/profiles"; // Ensure this service exists
 
-const Sidebar = () => {
+const Sidebar2 = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
   const location = useLocation(); // Track current location
@@ -42,23 +45,14 @@ const Sidebar = () => {
     window.location.assign("/"); // Redirect to home page after logout
   };
 
-  // Conditional navigation items based on role
   const navItems = [
     { label: "Home", icon: <FaHome />, path: "/userdashboard" },
     { label: "Resources", icon: <FaChartPie />, path: "/resources" },
-    { label: "Peer Therapists", icon: <FaUser />, path: "/peer-therapists" },
-    { label: "Prof. Therapists", icon: <FaUser />, path: "/professional-therapists" },
-    ...(userProfile?.role === "user"
-      ? [{ label: "Take Assessment", icon: <FaPen />, path: "/assessment" }]
-      : [
-          {
-            label: "Work Dashboard",
-            icon: <FaSuitcase />,
-            path: "/therapist-dashboard",
-          },
-        ]),
-    { label: "Let's Celebrate You", icon: <FaHandHoldingHeart />, path: "/celebrate" },
-    { label: "Celebrations", icon: <FaBookOpen />, path: "/celebrations" },
+    { label: "Add Article", icon: <FaReadme />, path: "/addarticle" },
+    { label: "Add Video", icon: <FaVideo /> , path: "/addvideo" },
+    { label: "Add EBook", icon: <FaBookOpen />, path: "/addebook" },
+    { label: "To Do", icon: <FaPen />, path: "/todo" },
+    { label: "Chatroom", icon: <FaUser />, path: "/chatroom" },
   ];
 
   return (
@@ -141,4 +135,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Sidebar2;

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Sidebar from '../../layouts/Sidebar';
-import Navbar from '../../layouts/Navbar';
+
 import { getAllPeerTherapists } from '../../services/therapists';
 
 const PeerTherapistsList = () => {

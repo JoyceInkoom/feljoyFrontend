@@ -1,14 +1,19 @@
+// components/UserDashboard.jsx
+
 import React, { useState, useEffect } from "react";
+import Sidebar from "../../layouts/Sidebar"; 
 import {
-  FaHome, FaChartPie, FaUser, FaCog, FaCheckCircle,
-  FaSearch, FaSignOutAlt, FaEdit, FaUserCircle,
-  FaDumbbell, FaBookOpen, FaSmile, FaPen
+  FaSearch,
+  FaUserCircle,
+  FaBookOpen,
+  FaSmile,
+  FaPray,
 } from "react-icons/fa";
 import { apiUserProfile } from "../../services/profiles";
 
-const NavItem = ({ icon, label, onClick }) => (
+const NavItem = ({ icon, label, onClick, customClass }) => (
   <div
-    className="flex items-center space-x-2 text-gray-300 hover:text-white cursor-pointer transition duration-200"
+    className={`flex items-center space-x-2 text-gray-300 hover:text-white cursor-pointer transition duration-200 ${customClass}`}
     onClick={onClick}
   >
     <span className="text-xl">{icon}</span>
@@ -48,68 +53,8 @@ const UserDashboard = () => {
 
   return (
     <div className="flex h-screen bg-white">
-      {/* Sidebar */}
-      <aside className="w-64 bg-indigo-900 text-white flex flex-col">
-        <div className="pt-4 text-center font-bold text-lg border-b border-white">
-          Your Mental Health Companion
-        </div>
-
-        {/* Profile Section */}
-        <div className="flex flex-col items-center py-6">
-          <div className="relative w-24 h-24">
-            {userProfile?.profilePicture ? (
-              <img
-              src={`https://savefiles.org/secure/uploads/${userProfile?.profilePicture}?shareable_link=468`}
-              alt={userProfile?.userName}
-                className="w-full h-full rounded-full object-cover"
-              />
-            ) : (
-              <FaUserCircle className="w-full h-full text-white" />
-            )}
-            <FaEdit
-              className="absolute bottom-0 right-0 bg-white text-gray-500 rounded-full p-1 cursor-pointer"
-              style={{ transform: "translate(25%, 25%)" }}
-              onClick={() => (window.location.href = "/profileupdate")}
-            />
-            {/* Verified Icon as an Exponent */}
-            <FaCheckCircle
-              className={`absolute top-0 right-0 ${getVerifiedIconColor(
-                userProfile?.role
-              )} text-lg`}
-              style={{ transform: "translate(25%, -25%)" }}
-            />
-          </div>
-          <h3 className="mt-4 text-lg font-bold">
-            Welcome!! {userProfile?.userName || "User"}
-          </h3>
-        </div>
-
-        {/* Navigation Links */}
-        <nav className="flex-1 px-6 py-4 space-y-4">
-          <NavItem icon={<FaHome className="text-white" />} label="Home" onClick={() => (window.location.href = "/")} />
-          <NavItem icon={<FaChartPie className="text-white" />} label="Resources" onClick={() => (window.location.href = "/resources")}/>
-          <NavItem icon={<FaUser className="text-white" />} label="Peer Therapists" onClick={() => (window.location.href = "/peer-therapists")}/>
-          <NavItem icon={<FaUser className="text-white" />} label="Professional Therapists" onClick={() => (window.location.href = "/professional-therapists")}/>
-          <NavItem icon={<FaPen className="text-white" />} label="Take Assessment" onClick={() => (window.location.href = "/assessment")}/>
-          <NavItem icon={<FaDumbbell className="text-white" />} label="Let's Celebrate with You" onClick={() => (window.location.href = "/")}/>
-          <NavItem icon={<FaBookOpen className="text-white" />} label="Celebrations" onClick={() => (window.location.href = "/")}/>
-        </nav>
-        
-        <div className="px-6 py-4 border-t border-white">
-        <button
-  className="flex items-center w-full text-red-500 hover:text-red-800"
-  onClick={() => {
-    localStorage.removeItem("authToken"); 
-    window.location.href = "/"; 
-  }}
->
-  <FaSignOutAlt className="mr-2" />
-  Logout
-</button>
-
-        </div>
-      </aside>
-
+      <Sidebar />
+      
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Top Navbar */}
@@ -123,69 +68,110 @@ const UserDashboard = () => {
             />
           </div>
           <div className="flex items-center space-x-4">
-  {/* Navbar icons with tooltips, Apply black color only to navbar items */}
-  <NavItem 
-    icon={<FaDumbbell className="text-white" />} 
-    label="Meditation" 
-    onClick={() => (window.location.href = "/meditaion")}
-    customClass="text-black" // Apply black text only for this nav item
-  />
-  <NavItem 
-    icon={<FaBookOpen className="text-white" />} 
-    label="Emotion Diary" 
-    onClick={() => (window.location.href = "/emotiondairy")}
-    customClass="text-black" 
-  />
-  <NavItem 
-    icon={<FaSmile className="text-white" />} 
-    label="Stress Ball" 
-    onClick={() => (window.location.href = "/stressball")}
-    customClass="text-black"
-  />
+            {/* Navbar icons with tooltips, Apply black color only to navbar items */}
+            <NavItem
+              icon={<FaPray className="text-white" />}
+              label="Meditation"
+              onClick={() => (window.location.href = "/meditation")}
+              customClass="text-black"
+            />
+            <NavItem
+              icon={<FaBookOpen className="text-white" />}
+              label="Emotion Diary"
+              onClick={() => (window.location.href = "/emotiondairy")}
+              customClass="text-black"
+            />
+            <NavItem
+              icon={<FaSmile className="text-white" />}
+              label="Stress Ball"
+              onClick={() => (window.location.href = "/stressball")}
+              customClass="text-black"
+            />
 
-  {/* Profile Avatar */}
-  <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
-    {userProfile?.profilePicture ? (
-      <img
-       src={`https://savefiles.org/secure/uploads/${userProfile?.profilePicture}?shareable_link=468`}
-              alt={userProfile?.userName}
-        className="w-full h-full rounded-full object-cover"
-      />
-    ) : (
-      <FaUserCircle className="w-full h-full text-black" />
-    )}
-  </div>
-</div>
-
+            {/* Profile Avatar */}
+            <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
+              {userProfile?.profilePicture ? (
+                <img
+                  src={`https://savefiles.org/secure/uploads/${userProfile?.profilePicture}?shareable_link=468`}
+                  alt={userProfile?.userName}
+                  className="w-full h-full rounded-full object-cover"
+                />
+              ) : (
+                <FaUserCircle className="w-full h-full text-black" />
+              )}
+            </div>
+          </div>
         </header>
 
         {/* Main Dashboard Content */}
         <main className="flex-1 p-6 overflow-y-auto">
-          <h2 className="text-2xl font-semibold mb-6">Dashboard Overview</h2>
+          <h2 className="text-2xl font-semibold text-center mb-6">Welcome To Your Mental Health Companion Dashboard</h2>
 
-          {/* Stats Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-            <StatsCard title="Total Interactions" value="1,254" />
-            <StatsCard title="Engaged Resources" value="$32,700" />
-            <StatsCard title="Note To Self" value="172" />
-            <StatsCard title="Support" value="56" />
+          {/* Flow Chart */}
+          <div className="bg-white shadow-md rounded-lg p-6 mb-6 flex flex-row justify-center items-center">
+            <div className="flowchart-step bg-blue-500 text-white rounded-lg px-4 py-2">
+              <h4 className="text-lg">Start</h4>
+            </div>
+            <div className="flowchart-arrow border-t-2 border-gray-300 mx-4"></div>
+            <div className="flowchart-step bg-orange-500 text-white rounded-lg px-4 py-2">
+              <h4 className="text-lg">Find Support</h4>
+              <ul className="text-sm text-gray-200">
+                <li>Peer Therapists</li>
+                <li>Professional Therapists</li>
+            </ul>
           </div>
+          <div className="flowchart-arrow border-t-2 border-gray-300 mx-4"></div>
+          <div className="flowchart-step bg-green-500 text-white rounded-lg px-4 py-2">
+            <h4 className="text-lg">Manage Stress</h4>
+            <ul className="text-sm text-gray-200">
+              <li>Stress Ball</li>
+              <li>Meditation</li>
+            </ul>
+          </div>
+          <div className="flowchart-arrow border-t-2 border-gray-300 mx-4"></div>
+          <div className="flowchart-step bg-purple-500 text-white rounded-lg px-4 py-2">
+            <h4 className="text-lg">Track Progress</h4>
+            <ul className="text-sm text-gray-200">
+              <li>Emotion Diary</li>
+              <li>Log Milestones</li>
+            </ul>
+          </div>
+          <div className="flowchart-arrow border-t-2 border-gray-300 mx-4"></div>
+          <div className="flowchart-step bg-red-500 text-white rounded-lg px-4 py-2">
+            <h4 className="text-lg">Resources</h4>
+            <ul className="text-sm text-gray-200">
+              <li>Access Resources</li>
+              <li>Learn More</li>
+            </ul>
+          </div>
+          <div className="flowchart-arrow border-t-2 border-gray-300 mx-4"></div>
+          <div className="flowchart-step bg-blue-500 text-white rounded-lg px-4 py-2">
+            <h4 className="text-lg">Finish</h4>
+          </div>
+        </div>
 
-          {/* Charts or Other Components */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="p-6 bg-white shadow-md rounded-lg">
-              <h3 className="font-semibold text-lg mb-4">Mental State Analytics</h3>
-              <div className="h-48 bg-gray-200 rounded-lg"></div>
-            </div>
-            <div className="p-6 bg-white shadow-md rounded-lg">
-              <h3 className="font-semibold text-lg mb-4">User Activity</h3>
-              <div className="h-48 bg-gray-200 rounded-lg"></div>
-            </div>
+        {/* Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+          <StatsCard title="Total Interactions" value="1,254" />
+          <StatsCard title="Engaged Resources" value="$32,700" />
+          <StatsCard title="Note To Self" value="172" />
+          <StatsCard title="Support" value="56" />
+        </div>
+
+        {/* Charts or Other Components */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="p-6 bg-white shadow-md rounded-lg">
+            <h3 className="font-semibold text-lg mb-4">Mental State Analytics</h3>
+            <div className="h-20 bg-gray-200 rounded-lg"></div>
           </div>
-        </main>
-      </div>
+          <div className="p-6 bg-white shadow-md rounded-lg">
+            <h3 className="font-semibold text-lg mb-4">User Activity</h3>
+            <div className="h-20 bg-gray-200 rounded-lg"></div>
+          </div>
+        </div>
+      </main>
     </div>
-  );
+  </div>
+);
 };
-
 export default UserDashboard;

@@ -79,7 +79,7 @@ const MusicAndVideosSection = () => {
         {categories.map((category, index) => (
           <section
             key={index}
-            className="bg-indigo-200 rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all"
+            className="bg-indigo-900 rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all"
           >
             {/* Background with Title and Description */}
             <div

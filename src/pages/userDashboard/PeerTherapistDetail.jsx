@@ -94,6 +94,12 @@ const PeerTherapistDetail = () => {
 
           {/* Connect Button */}
           <div className="flex justify-center mt-4">
+          <button
+              onClick={() => navigate(`/chatroom/${therapist.id}`)} // Navigate to the chatroom with the therapist ID
+              className="bg-green-500 text-white px-6 py-2 rounded-full"
+            >
+              Chat with Therapist
+            </button>
             <a
               href={`mailto:${therapist.email}`}
               className="flex items-center justify-center px-8 py-4 bg-blue-600 text-white text-sm font-semibold rounded-full shadow-lg hover:bg-blue-700 transition duration-300"
