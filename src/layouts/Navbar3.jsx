@@ -8,7 +8,7 @@ import {
   FaHandHoldingMedical,
 } from "react-icons/fa";
 
-const Navbar2 = ({ userProfile }) => (
+const Navbar3 = ({ userProfile }) => (
   <header className="flex items-center justify-between p-4 bg-indigo-900 shadow fixed top-0 left-[256px] w-[calc(100%-256px)] z-50">
     <div className="flex items-center space-x-2">
       <FaSearch className="text-white" />
@@ -24,7 +24,7 @@ const Navbar2 = ({ userProfile }) => (
         onClick={() => (window.location.href = "/interactions")}
       >
         <FaHandHoldingMedical className="text-white" />
-        <span className="text-white">Interactions</span>
+        <span className="text-white">Certifications</span>
       </div>
       {/* <div
         className="flex items-center space-x-2 cursor-pointer"
@@ -35,10 +35,10 @@ const Navbar2 = ({ userProfile }) => (
       </div> */}
       <div
         className="flex items-center space-x-2 cursor-pointer"
-        onClick={() => (window.location.href = "/clientmoods")}
+        onClick={() => (window.location.href = "/getallusers")}
       >
         <FaSmile className="text-white" />
-        <span className="text-white">Client Emotions</span>
+        <span className="text-white">All Users</span>
       </div>
       <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
         {userProfile?.profilePicture ? (
@@ -55,4 +55,4 @@ const Navbar2 = ({ userProfile }) => (
   </header>
 );
 
-export default Navbar2;
+export default Navbar3;

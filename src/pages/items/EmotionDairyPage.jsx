@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaSave } from "react-icons/fa";
 import Sidebar from "../../layouts/Sidebar";
 import Navbar from "../../layouts/Navbar";
+import { apiPostMood, apiGetMood } from "../../services/mood";
+import { getAllPeerTherapists, getAllProfessionalTherapists } from "../../services/therapists";
+import { toast } from "react-toastify";
 
-// Available emotions with emojis for the user to select
 const emotions = [
   { label: "Happy", emoji: "😊" },
   { label: "Sad", emoji: "😢" },
@@ -28,56 +30,91 @@ const emotions = [
   { label: "Embarrassed", emoji: "😳" },
   { label: "Relieved", emoji: "😅" },
   { label: "Jealous", emoji: "😒" },
-  
-  
-  
 ];
-
 
 const EmotionDiaryPage = () => {
   const [emotion, setEmotion] = useState("");
   const [entryText, setEntryText] = useState("");
-  const [entries, setEntries] = useState([]); // Store diary entries
+  const [entries, setEntries] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
-  const [shareWithTherapist, setShareWithTherapist] = useState(null);
+  const [showTherapistModal, setShowTherapistModal] = useState(false);
+  const [selectedTherapist, setSelectedTherapist] = useState(null);
+  const [therapists, setTherapists] = useState([]);
   const entriesPerPage = 6;
 
-  // Handle the change in selected emotion
-  const handleEmotionChange = (emotionLabel) => {
-    setEmotion(emotionLabel);
+  useEffect(() => {
+    const fetchEntries = async () => {
+      try {
+        const response = await apiGetMood();
+        const moodEntries = response.userMoodLogs || [];
+        setEntries(moodEntries);
+      } catch (error) {
+        console.error("Error fetching mood entries:", error);
+      }
+    };
+
+    fetchEntries();
+
+    const fetchTherapists = async () => {
+      try {
+        const peerResponse = await getAllPeerTherapists();
+        const professionalResponse = await getAllProfessionalTherapists();
+        setTherapists([...peerResponse, ...professionalResponse]);
+      } catch (error) {
+        console.error("Error fetching therapists:", error);
+      }
+    };
+
+    fetchTherapists();
+  }, []);
+
+  useEffect(() => {
+    if (selectedTherapist) {
+      handleSubmitEntry();
+    }
+  }, [selectedTherapist]);
+
+  const handleEmotionChange = (emoji) => {
+    setEmotion(emoji);
   };
 
-  // Handle the text input for the diary entry
   const handleTextChange = (e) => {
     setEntryText(e.target.value);
   };
 
-  // Handle save and open the modal for therapist sharing permission
   const handleSaveEntry = () => {
     if (emotion && entryText) {
-      setShowModal(true); // Open the modal for sharing permission
+      setShowModal(true);
     } else {
       alert("Please select an emotion and write your diary entry.");
     }
   };
 
-  // Confirm or deny therapist access to emotion
-  const handleTherapistPermission = (allow) => {
-    const newEntry = {
-      emotion,
-      text: entryText,
-      date: new Date().toLocaleDateString(),
-      therapistCanSee: allow, // Set the flag based on user selection
+  const handleSubmitEntry = async () => {
+    const token = localStorage.getItem("authToken");
+    const sharedWithId = selectedTherapist?.id || "";
+    const payload = {
+      emoji: emotion,
+      entry: entryText,
+      sharedWithId,
     };
 
-    setEntries([newEntry, ...entries]); // Add the new entry at the beginning of the list
-    setShowModal(false); // Close the modal after decision
-    setEmotion(""); // Reset emotion
-    setEntryText(""); // Reset entry text
+    try {
+      await apiPostMood(payload);
+      const response = await apiGetMood();
+      const moodEntries = response.userMoodLogs || [];
+      setEntries(moodEntries);
+      setShowModal(false);
+      setShowTherapistModal(false);
+      setEmotion("");
+      setEntryText("");
+      setSelectedTherapist(null);
+    } catch (error) {
+      console.error("Error saving mood entry:", error);
+    }
   };
 
-  // Pagination logic
   const indexOfLastEntry = currentPage * entriesPerPage;
   const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
   const currentEntries = entries.slice(indexOfFirstEntry, indexOfLastEntry);
@@ -99,16 +136,16 @@ const EmotionDiaryPage = () => {
             {emotions.map((emotionOption) => (
               <motion.button
                 key={emotionOption.label}
-                onClick={() => handleEmotionChange(emotionOption.label)}
+                onClick={() => handleEmotionChange(emotionOption.emoji)}
                 className={`relative p-2 rounded-full shadow-md transition ${
-                  emotion === emotionOption.label
+                  emotion === emotionOption.emoji
                     ? "bg-indigo-900 text-white"
                     : "bg-white text-indigo-900 border border-indigo-900"
                 }`}
                 whileHover={{ scale: 1.1 }}
               >
                 {emotionOption.emoji}
-                {emotion === emotionOption.label && (
+                {emotion === emotionOption.emoji && (
                   <span className="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 text-sm text-indigo-900">
                     {emotionOption.label}
                   </span>
@@ -142,67 +179,118 @@ const EmotionDiaryPage = () => {
               {currentEntries.length > 0 ? (
                 currentEntries.map((entry, index) => (
                   <motion.div
-                    key={index}
+                    key={entry.id}
                     className="bg-white p-4 rounded-lg shadow-md border border-pink-100"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <h3 className="text-lg font-bold text-indigo-900">{entry.emotion}</h3>
-                    <p className="mt-2 text-gray-600 text-sm">{entry.text}</p>
-                    <div className="mt-2 text-xs text-gray-500">{entry.date}</div>
+                    <h3 className="text-lg font-semibold text-indigo-900">{entry.emoji}</h3>
+                    <p className="mt-2 text-gray-600">{entry.entry}</p>
+                    <span className="text-sm text-gray-400 block mt-2">
+                      {new Date(entry.createdAt).toLocaleString()}
+                    </span>
                   </motion.div>
                 ))
               ) : (
-                <p className="text-gray-600">No entries yet! Start writing your feelings today.</p>
+                <p className="text-center text-gray-500">No entries found.</p>
               )}
             </div>
-
-            {/* Pagination Controls */}
-            {entries.length > entriesPerPage && (
-              <div className="flex justify-center mt-4 space-x-2">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => handlePageChange(page)}
-                    className={`px-3 py-1 rounded ${
-                      currentPage === page
-                        ? "bg-indigo-900 text-white"
-                        : "bg-white border border-indigo-900 text-indigo-900"
-                    }`}
-                  >
-                    {page}
-                  </button>
-                ))}
-              </div>
-            )}
+            <div className="mt-4 flex justify-center">
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handlePageChange(index + 1)}
+                  className={`px-4 py-2 mx-1 text-white bg-indigo-900 rounded-full hover:bg-indigo-500 ${
+                    currentPage === index + 1 ? "bg-indigo-500" : ""
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Modal for Therapist Permission */}
+      {/* First Modal for Sharing with Therapist */}
       {showModal && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-1/3">
-            <h3 className="text-xl font-semibold mb-4">Permission to Share with Therapist</h3>
-            <p className="text-sm mb-4">
-              Would you like to allow your therapist to see your emotion? Your diary entry is confidential and safe.
-            </p>
-            <div className="flex justify-between">
-              <button
-                onClick={() => handleTherapistPermission(true)}
-                className="bg-indigo-900 text-white p-2 rounded-md hover:bg-indigo-500"
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-[90%] sm:w-[400px]">
+            <h3 className="text-xl font-semibold mb-4 text-indigo-900">
+              Would you like to share this with your therapist?
+            </h3>
+            <div className="space-y-4">
+            <button
+                onClick={() => setShowTherapistModal(true)}
+                className="w-full bg-indigo-900 text-white p-2 rounded-lg hover:bg-indigo-500"
               >
-                Allow
+                Yes, share with my therapist
               </button>
               <button
-                onClick={() => handleTherapistPermission(false)}
-                className="bg-red-500 text-white p-2 rounded-md hover:bg-red-600"
+                onClick={() => {
+                  handleSubmitEntry();
+                  setShowModal(false);
+                }}
+                className="w-full bg-gray-400 text-white p-2 rounded-lg hover:bg-gray-300"
               >
-                Disallow
+                No, keep it private
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Second Modal for Selecting Therapist */}
+      {showTherapistModal && therapists.length > 0 && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-[90%] sm:w-[600px] h-[80vh] overflow-y-scroll">
+            <h3 className="text-xl font-semibold mb-4 text-indigo-900">Select a Therapist</h3>
+            <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-indigo-900">Peer Therapists</h4>
+              {therapists.filter((therapist) => therapist.role === "peer-therapist").map((therapist) => (
+                <button
+                  key={therapist.id}
+                  onClick={() => setSelectedTherapist(therapist)}
+                  className="w-full bg-indigo-900 text-white p-2 rounded-lg hover:bg-indigo-500 mb-2"
+                >
+                  {therapist.fullName}
+                </button>
+              ))}
+              <h4 className="text-lg font-semibold text-indigo-900 mt-4">Professional Therapists</h4>
+              {therapists.filter((therapist) => therapist.role === "professional-therapist").map((therapist) => (
+                <button
+                  key={therapist.id}
+                  onClick={() => setSelectedTherapist(therapist)}
+                  className="w-full bg-indigo-900 text-white p-2 rounded-lg hover:bg-indigo-500 mb-2"
+                >
+                  {therapist.fullName}
+                </button>
+              ))}
+              <button
+                onClick={() => setShowTherapistModal(false)}
+                className="w-full bg-gray-400 text-white p-2 rounded-lg hover:bg-gray-300"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showTherapistModal && therapists.length === 0 && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-[90%] sm:w-[400px]">
+            <h3 className="text-xl font-semibold mb-4 text-indigo-900">
+              No therapists available. Please try again later.
+            </h3>
+            <button
+              onClick={() => setShowTherapistModal(false)}
+              className="w-full bg-gray-400 text-white p-2 rounded-lg hover:bg-gray-300"
+            >
+              Okay
+            </button>
           </div>
         </div>
       )}

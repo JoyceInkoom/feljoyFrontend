@@ -25,6 +25,7 @@ import AddEbookForm from "./pages/items/AddEbookForm";
 import ArticleDetails from "./pages/items/ArticleDetails";
 import VideoDetails from "./pages/items/VideoDetails";
 import EbookDetails from "./pages/items/EBookDetails";
+import SharedWith from "./pages/items/SharedWith";
 
 function App() {
   const router = createBrowserRouter([
@@ -127,6 +128,10 @@ function App() {
   {
     path: "/addebook",
     element: <AddEbookForm />
+  },
+  {
+    path: "/clientmoods",
+    element: <SharedWith />
   },
   ]);
   return (
