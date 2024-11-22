@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaSave } from "react-icons/fa";
 import Sidebar from "../../layouts/Sidebar";
-import Navbar from "../../layouts/Navbar";
+
 import { apiPostMood, apiGetMood } from "../../services/mood";
 import { getAllPeerTherapists, getAllProfessionalTherapists } from "../../services/therapists";
 import { toast } from "react-toastify";
@@ -48,9 +48,10 @@ const EmotionDiaryPage = () => {
       try {
         const response = await apiGetMood();
         const moodEntries = response.userMoodLogs || [];
-        setEntries(moodEntries);
+        setEntries(moodEntries.reverse()); // Reverse the array to display new entries first
       } catch (error) {
         console.error("Error fetching mood entries:", error);
+        toast.error("Error fetching mood entries.");
       }
     };
 
@@ -63,6 +64,7 @@ const EmotionDiaryPage = () => {
         setTherapists([...peerResponse, ...professionalResponse]);
       } catch (error) {
         console.error("Error fetching therapists:", error);
+        toast.error("Error fetching therapists.");
       }
     };
 
@@ -87,7 +89,7 @@ const EmotionDiaryPage = () => {
     if (emotion && entryText) {
       setShowModal(true);
     } else {
-      alert("Please select an emotion and write your diary entry.");
+      toast.warning("Please select an emotion and write your diary entry.");
     }
   };
 
@@ -104,14 +106,16 @@ const EmotionDiaryPage = () => {
       await apiPostMood(payload);
       const response = await apiGetMood();
       const moodEntries = response.userMoodLogs || [];
-      setEntries(moodEntries);
+      setEntries(moodEntries.reverse()); // Reverse the array to display new entries first
       setShowModal(false);
       setShowTherapistModal(false);
       setEmotion("");
       setEntryText("");
       setSelectedTherapist(null);
+      toast.success("Entry saved successfully.");
     } catch (error) {
       console.error("Error saving mood entry:", error);
+      toast.error("Error saving mood entry.");
     }
   };
 
@@ -123,7 +127,6 @@ const EmotionDiaryPage = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
   return (
     <div className="flex h-screen">
       <Sidebar className="w-[300px] flex-shrink-0 h-full" />

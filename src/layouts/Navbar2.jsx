@@ -40,7 +40,7 @@ const Navbar2 = ({ userProfile }) => (
         <FaSmile className="text-white" />
         <span className="text-white">Client Emotions</span>
       </div>
-      <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
+      {/* <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
         {userProfile?.profilePicture ? (
           <img
             src={`https://savefiles.org/${userProfile?.profilePicture}?shareable_link=468`}
@@ -50,7 +50,7 @@ const Navbar2 = ({ userProfile }) => (
         ) : (
           <FaUserCircle className="w-full h-full text-black" />
         )}
-      </div>
+      </div> */}
     </div>
   </header>
 );

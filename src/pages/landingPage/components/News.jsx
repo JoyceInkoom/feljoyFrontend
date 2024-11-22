@@ -60,7 +60,7 @@ const MentalHealthNews = () => {
   return (
     <div className="max-w-7xl mt-5 mb-5 mx-auto p-4 md:p-6 lg:p-8">
       <h2 className="text-2xl text-center text-indigo-800 font-bold mb-6">
-        LATEST MENTAL HEALTH BLOGS
+        LATEST BLOGS
       </h2>
       {loading ? (
         <p className="text-gray-600">Loading...</p>

@@ -3,7 +3,6 @@ import { apiUserProfile, apiUpdateProfile } from '../../services/profiles';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'; 
 import Sidebar from '../../layouts/Sidebar';
-import Navbar from '../../layouts/Navbar';
 
 const UpdateProfile = () => {
   const [userProfile, setUserProfile] = useState({

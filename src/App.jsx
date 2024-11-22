@@ -18,7 +18,7 @@ import EmotionDiaryPage from "./pages/items/EmotionDairyPage";
 import ExercisePage from "./pages/items/ExercisePage";
 import ResourcesPage from "./pages/items/ResourcesPage";
 import PtDashboard from "./pages/pt dashboard/PtDashboard";
-import ChatRoom from "./pages/items/Chatroom";
+
 import AddArticleForm from "./pages/items/AddArticleForm";
 import AddVideoForm from "./pages/items/AddVideoForm";
 import AddEbookForm from "./pages/items/AddEbookForm";
@@ -26,6 +26,22 @@ import ArticleDetails from "./pages/items/ArticleDetails";
 import VideoDetails from "./pages/items/VideoDetails";
 import EbookDetails from "./pages/items/EBookDetails";
 import SharedWith from "./pages/items/SharedWith";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminLogin from "./pages/admin/AdminLogin";
+import GetAllUsers from "./pages/admin/GetAllUsers";
+import AdminAddArticle from "./pages/admin/AminAddArticle";
+import AdminAddVideo from "./pages/admin/AdminAddVideo";
+import AdminAddEbook from "./pages/admin/AdminAddEbook";
+import PostAssessment from "./pages/admin/PostAssessment";
+import GetResponses from "./pages/admin/GetResponses";
+import UpdateStatus from "./pages/admin/UpdateStatus";
+import GetCertificates from "./pages/admin/GetCertificates";
+import UpdateTherapistStatus from "./pages/admin/UpdateTherapistStatus";
+import Chatroom from "./pages/chat/Chatroom";
+import ChatSessions from "./pages/chat/ChatSessions";
+import Celebrations from "./pages/celebrations/Celebrations";
+import CelebrationsPage from "./pages/celebrations/CelebrationsPage";
+
 
 function App() {
   const router = createBrowserRouter([
@@ -109,10 +125,7 @@ function App() {
   //   path: "/resource/:type/:id",
   //   element: <ResourceDetailsPage />
   // },
-  {
-    path: "/chatroom/:id",
-    element: <ChatRoom/>
-  },
+  
   {
     path: "/therapist-dashboard",
     element: <PtDashboard />
@@ -133,6 +146,67 @@ function App() {
     path: "/clientmoods",
     element: <SharedWith />
   },
+  {
+    path: "/admindashboard",
+    element: <AdminDashboard />
+  },
+  {
+    path: "/adminlogin",
+    element: <AdminLogin />
+  },
+  {
+    path: "/allusers",
+    element: <GetAllUsers />
+  },
+  {
+    path: "/adminaddarticle",
+    element: <AdminAddArticle />
+  },
+  {
+    path: "/adminaddvideo",
+    element: <AdminAddVideo />
+  },
+  {
+    path: "/adminaddebook",
+    element: <AdminAddEbook />
+  },
+  {
+    path: "/postassessment",
+    element: <PostAssessment />
+  },
+  {
+    path: "/responses",
+    element: <GetResponses />
+  },
+{
+path: "/admin/update-status/:id",
+element: <UpdateStatus />
+},
+{
+  path: "/certificates",
+  element: <GetCertificates />
+  },
+  {
+    path: "/admin/update/certificate-status/:id",
+    element: <UpdateTherapistStatus />
+  },
+  {
+    path: "/chatroom/:therapistId",
+    element: <Chatroom />
+  },
+  {
+    path: "/chatroom",
+    element: <ChatSessions />
+  },
+  {
+    path: "/post-celebration",
+    element: <Celebrations />
+  },
+  {
+    path: "/celebrations",
+    element: <CelebrationsPage />
+  },
+ 
   ]);
   return (
     <><RouterProvider router={router} />

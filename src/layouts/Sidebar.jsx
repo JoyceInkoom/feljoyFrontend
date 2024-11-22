@@ -57,7 +57,7 @@ const Sidebar = () => {
             path: "/therapist-dashboard",
           },
         ]),
-    { label: "Let's Celebrate You", icon: <FaHandHoldingHeart />, path: "/celebrate" },
+    { label: "Let's Celebrate You", icon: <FaHandHoldingHeart />, path: "/post-celebration" },
     { label: "Celebrations", icon: <FaBookOpen />, path: "/celebrations" },
   ];
 
@@ -83,7 +83,7 @@ const Sidebar = () => {
         <div className="relative w-24 h-24 mt-4">
           {userProfile?.profilePicture ? (
             <img
-              src={`https://savefiles.org/secure/uploads/${userProfile?.profilePicture}?shareable_link=468`}
+              src={`https://savefiles.org/${userProfile?.profilePicture}?shareable_link=468`}
               alt={userProfile?.userName}
               className="w-full h-full rounded-full object-cover"
             />

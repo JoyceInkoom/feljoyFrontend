@@ -30,17 +30,12 @@ export const apiPostMood = async (payload) => {
 
 
 
-export const getEmotionsSharedWithTherapist = async (therapistId) => {
-  const token = localStorage.getItem("authToken");
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
-  };
-
+export const getMoodLogs = async (userId) => {
   try {
-    const response = await apiClient.get(`/moodlogs/${therapistId}`, { headers });
-    return response.data;
+    const response = await apiClient.get(`/moodlogs/${userId}`);
+    return response.data.weeklyMoodLogs;
   } catch (error) {
+    console.error("Error fetching mood logs:", error);
     throw error;
   }
 };

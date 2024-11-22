@@ -47,11 +47,11 @@ const Sidebar3 = () => {
   };
 
   const navItems = [
-    { label: "Home", icon: <FaHome />, path: "/userdashboard" },
+    { label: "Home", icon: <FaHome />, path: "/admindashboard" },
     { label: "Post Assessment", icon: <FaBook />, path: "/postassessment" },
-    { label: "Add Article", icon: <FaReadme />, path: "/addarticle" },
-    { label: "Add Video", icon: <FaVideo /> , path: "/addvideo" },
-    { label: "Add EBook", icon: <FaBookOpen />, path: "/addebook" },
+    { label: "Add Article", icon: <FaReadme />, path: "/adminaddarticle" },
+    { label: "Add Video", icon: <FaVideo /> , path: "/adminaddvideo" },
+    { label: "Add EBook", icon: <FaBookOpen />, path: "/adminaddebook" },
     { label: "To Do", icon: <FaPen />, path: "/todo" },
     { label: "Responses", icon: <FaUser />, path: "/responses" },
   ];
@@ -78,7 +78,7 @@ const Sidebar3 = () => {
         <div className="relative w-24 h-24 mt-4">
           {userProfile?.profilePicture ? (
             <img
-              src={`https://savefiles.org/secure/uploads/${userProfile?.profilePicture}?shareable_link=468`}
+              src={`https://savefiles.org/${userProfile?.profilePicture}?shareable_link=468`}
               alt={userProfile?.userName}
               className="w-full h-full rounded-full object-cover"
             />
@@ -101,7 +101,7 @@ const Sidebar3 = () => {
             style={{ transform: "translate(25%, -25%)" }}
           />
         </div>
-        <h3 className="mt-4 text-lg font-bold">Welcome, {userProfile?.userName || "User"}</h3>
+        <h3 className="mt-4 text-lg font-bold">Welcome! Admin {userProfile?.userName || "User"}</h3>
       </div>
 
       {/* Navigation Links */}

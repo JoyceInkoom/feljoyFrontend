@@ -114,7 +114,7 @@ const ResourcesPage = () => {
                   {/* Example to embed a video */}
                   <video controls>
                     <source
-                      src={`https://your-server.com/${video.video}`}
+                      src={`https://savefiles.org/${video.video}?shareable_link=468`}
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.

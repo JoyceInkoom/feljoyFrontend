@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { getLoggedInTherapistId } from "../../services/mood";
-import { getEmotionsSharedWithTherapist } from "../../services/mood";
-import Sidebar from "../../layouts/Sidebar2";
-import Navbar2 from "../../layouts/Navbar2";
 
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Navbar from "../../layouts/Navbar2";
+import Sidebar from "../../layouts/Sidebar2";
 
 const emotions = [
   { label: "Happy", emoji: "😊" },
@@ -30,90 +30,118 @@ const emotions = [
   { label: "Jealous", emoji: "😒" },
 ];
 
+const getEmotionLabel = (emoji) => {
+  const emotion = emotions.find((e) => e.emoji === emoji);
+  return emotion ? emotion.label : "Unknown";
+};
 
 const SharedWith = () => {
-  const [emotionsShared, setEmotionsShared] = useState([]);
-  const [therapistId, setTherapistId] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [sharedMoods, setSharedMoods] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const token = localStorage.getItem("authToken");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(9);
 
   useEffect(() => {
-    const fetchTherapistId = async () => {
+    const fetchSharedMoods = async () => {
+      setLoading(true);
       try {
-        const id = await getLoggedInTherapistId();
-        console.log(id);
-        setTherapistId(id);
+        const response = await axios.get("https://mental-support-api.onrender.com/moods/shared", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setSharedMoods(response.data.sharedMoods);
       } catch (error) {
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-    fetchTherapistId();
-  }, []);
+    fetchSharedMoods();
+  }, [token]);
 
-  useEffect(() => {
-    const fetchEmotions = async () => {
-      if (!therapistId) return;
-      try {
-        const response = await getEmotionsSharedWithTherapist(therapistId);
-        console.log(response);
-        setEmotionsShared(response || []);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-    fetchEmotions();
-  }, [therapistId]);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = sharedMoods && sharedMoods.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-lg text-gray-500">Loading...</p>
+      <div className="h-screen">
+        <Sidebar className="fixed top-0 left-0 h-screen w-64 z-10" />
+        <div className=" overflow-y-auto flex-1">
+          <h1 className="text-2xl font-bold mb-4">Shared Emotions</h1>
+          <div>Loading...</div>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-lg text-red-500">{error}</p>
+      <div className="h-screen">
+        <Sidebar className="fixed top-0 left-0 h-screen w-64 z-10" />
+        <div className=" overflow-y-auto flex-1">
+          <h1 className="text-2xl font-bold mb-4">Shared Emotions</h1>
+          <div>Error: {error}</div>
+        </div>
       </div>
     );
   }
 
+  if (!sharedMoods || sharedMoods.length === 0) {
+    return (
+      <div className="h-screen flex">
+        <Sidebar className="fixed top-0 left-0 h-screen w-64 z-10" />
+        <div className="flex-1 overflow-y-auto ml-64 p-4 md:p-8">
+          <h1 className="text-2xl font-bold mb-4">Shared Emotions</h1>
+          <div>No one has shared emotions with you yet.</div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="h-screen flex">
-      <div className="w-64 h-screen fixed top-0 left-0 bg-white shadow-md z-10">
-        <Sidebar />
-      </div>
-      <div className="w-full h-full overflow-y-scroll ml-64 mt-16 p-4">
-        <h1 className="text-2xl text-center font-bold mb-4">Emotions Shared with Me</h1>
-        {emotionsShared && emotionsShared.length > 0 ? (
-          <ul>
-            {emotionsShared.map((emotion) => (
-              <li
-                key={emotion.id}
-                className="flex items-center mb-2 p-2 bg-gray-100 rounded"
-              >
-                <span className="mr-2 text-2xl">{emotion.emoji}</span>
-                <span className="text-gray-500 hover:text-gray-900">
-                  {emotions.find((e) => e.emoji === emotion.emoji)?.label}
-                </span>
-                <span className="mx-2">|</span>
-                <span>
-                  Shared by:{" "}
-                  <span className="font-bold">{emotion.postedBy?.userName}</span>
-                </span>
-                <span className="ml-2 text-sm text-gray-400">
-                  {new Date(emotion.createdAt).toLocaleString()}
-                </span>
-              </li>
+      <Sidebar className="fixed top-0 left-0 h-screen w-64 z-10" />
+      <div className="flex-1  p-4 overflow-y-auto">
+        <Navbar className="fixed top-0 left-64 right-0 z-10" />
+        <h1 className="text-2xl text-center font-bold mt-20 mb-4">Shared Emotions</h1>
+        {currentItems && currentItems.length > 0 ? (
+          <div className="grid grid-cols-3 gap-4">
+            {currentItems.map((mood) => (
+              <div key={mood.id} className="bg-gray-100 p-2 rounded shadow-sm">
+                <h2 className="text-2xl font-semibold">
+                  {mood.emoji} {mood.entry} ({getEmotionLabel(mood.emoji)})
+                </h2>
+                <p className="text-sm">Posted by: {mood.postedBy.userName}</p>
+                <p className="text-sm">Created at: {mood.createdAt}</p>
+              </div>
             ))}
-          </ul>
+          </div>
         ) : (
-          <p className="text-center text-gray-500">No emotions shared.</p>
+          <div>No shared emotions found.</div>
         )}
+        <div className="flex justify-center w-full mt-4">
+          {Array.from(
+            Array(Math.ceil(sharedMoods.length / itemsPerPage)),
+            (e, i) => {
+              return (
+                <button
+                  key={i + 1}
+                  onClick={() => paginate(i + 1)}
+                  className={`px-2 py-1 mx-1 rounded-lg ${
+                    currentPage === i + 1 ? "bg-blue-500 text-white" : ""
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              );
+            }
+          )}
+        </div>
       </div>
     </div>
   );

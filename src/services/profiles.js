@@ -7,5 +7,15 @@ export const apiUserProfile = async () => {
 
 // Update the user profile
 export const apiUpdateProfile = async (formData) => {
-  return await apiClient.patch("/users/me", formData); // Again, no need to manually set headers
+  try {
+    const response = await apiClient.patch('/users/me', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };

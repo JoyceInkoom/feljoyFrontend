@@ -8,6 +8,9 @@ import {
   FaBookOpen,
   FaSmile,
   FaPray,
+  FaSnapchat,
+  FaCommentSlash,
+  FaComment,
 } from "react-icons/fa";
 import { apiUserProfile } from "../../services/profiles";
 
@@ -70,6 +73,12 @@ const UserDashboard = () => {
           <div className="flex items-center space-x-4">
             {/* Navbar icons with tooltips, Apply black color only to navbar items */}
             <NavItem
+              icon={<FaComment className="text-white" />}
+              label="ChatRoom"
+              onClick={() => (window.location.href = "/chatroom")}
+              customClass="text-black"
+            />
+            <NavItem
               icon={<FaPray className="text-white" />}
               label="Meditation"
               onClick={() => (window.location.href = "/meditation")}
@@ -92,7 +101,7 @@ const UserDashboard = () => {
             <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
               {userProfile?.profilePicture ? (
                 <img
-                  src={`https://savefiles.org/secure/uploads/${userProfile?.profilePicture}?shareable_link=468`}
+                  src={`https://savefiles.org/${userProfile?.profilePicture}?shareable_link=468`}
                   alt={userProfile?.userName}
                   className="w-full h-full rounded-full object-cover"
                 />
@@ -105,15 +114,15 @@ const UserDashboard = () => {
 
         {/* Main Dashboard Content */}
         <main className="flex-1 p-6 overflow-y-auto">
-          <h2 className="text-2xl font-semibold text-center mb-6">Welcome To Your Mental Health Companion Dashboard</h2>
+          <h2 className="text-2xl font-semibold text-center mt-40 mb-6">Welcome To Your Mental Health Companion Dashboard</h2>
 
           {/* Flow Chart */}
           <div className="bg-white shadow-md rounded-lg p-6 mb-6 flex flex-row justify-center items-center">
-            <div className="flowchart-step bg-blue-500 text-white rounded-lg px-4 py-2">
+            <div className="flowchart-step bg-indigo-300 text-white rounded-lg px-4 py-2">
               <h4 className="text-lg">Start</h4>
             </div>
             <div className="flowchart-arrow border-t-2 border-gray-300 mx-4"></div>
-            <div className="flowchart-step bg-orange-500 text-white rounded-lg px-4 py-2">
+            <div className="flowchart-step bg-indigo-500 text-white rounded-lg px-4 py-2">
               <h4 className="text-lg">Find Support</h4>
               <ul className="text-sm text-gray-200">
                 <li>Peer Therapists</li>
@@ -121,7 +130,7 @@ const UserDashboard = () => {
             </ul>
           </div>
           <div className="flowchart-arrow border-t-2 border-gray-300 mx-4"></div>
-          <div className="flowchart-step bg-green-500 text-white rounded-lg px-4 py-2">
+          <div className="flowchart-step bg-indigo-700 text-white rounded-lg px-4 py-2">
             <h4 className="text-lg">Manage Stress</h4>
             <ul className="text-sm text-gray-200">
               <li>Stress Ball</li>
@@ -129,7 +138,7 @@ const UserDashboard = () => {
             </ul>
           </div>
           <div className="flowchart-arrow border-t-2 border-gray-300 mx-4"></div>
-          <div className="flowchart-step bg-purple-500 text-white rounded-lg px-4 py-2">
+          <div className="flowchart-step bg-indigo-900 text-white rounded-lg px-4 py-2">
             <h4 className="text-lg">Track Progress</h4>
             <ul className="text-sm text-gray-200">
               <li>Emotion Diary</li>
@@ -137,11 +146,11 @@ const UserDashboard = () => {
             </ul>
           </div>
           <div className="flowchart-arrow border-t-2 border-gray-300 mx-4"></div>
-          <div className="flowchart-step bg-red-500 text-white rounded-lg px-4 py-2">
+          <div className="flowchart-step bg-indigo-950 text-white rounded-lg px-4 py-2">
             <h4 className="text-lg">Resources</h4>
             <ul className="text-sm text-gray-200">
               <li>Access Resources</li>
-              <li>Learn More</li>
+            
             </ul>
           </div>
           <div className="flowchart-arrow border-t-2 border-gray-300 mx-4"></div>
@@ -151,15 +160,15 @@ const UserDashboard = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
           <StatsCard title="Total Interactions" value="1,254" />
           <StatsCard title="Engaged Resources" value="$32,700" />
           <StatsCard title="Note To Self" value="172" />
           <StatsCard title="Support" value="56" />
-        </div>
+        </div> */}
 
         {/* Charts or Other Components */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="p-6 bg-white shadow-md rounded-lg">
             <h3 className="font-semibold text-lg mb-4">Mental State Analytics</h3>
             <div className="h-20 bg-gray-200 rounded-lg"></div>
@@ -168,7 +177,7 @@ const UserDashboard = () => {
             <h3 className="font-semibold text-lg mb-4">User Activity</h3>
             <div className="h-20 bg-gray-200 rounded-lg"></div>
           </div>
-        </div>
+        </div> */}
       </main>
     </div>
   </div>

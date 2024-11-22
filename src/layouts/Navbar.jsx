@@ -20,10 +20,10 @@ const Navbar = ({ userProfile }) => (
     <div className="flex items-center space-x-4">
       <div
         className="flex items-center space-x-2 cursor-pointer"
-        onClick={() => (window.location.href = "/exercise")}
+        onClick={() => (window.location.href = "/meditation")}
       >
         <FaDumbbell className="text-white" />
-        <span className="text-white">Exercise</span>
+        <span className="text-white">Meditation</span>
       </div>
       <div
         className="flex items-center space-x-2 cursor-pointer"
@@ -39,17 +39,17 @@ const Navbar = ({ userProfile }) => (
         <FaSmile className="text-white" />
         <span className="text-white">Stress Ball</span>
       </div>
-      <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
+      {/* <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
         {userProfile?.profilePicture ? (
           <img
-            src={`https://savefiles.org/secure/uploads/${userProfile?.profilePicture}?shareable_link=468`}
+            src={`https://savefiles.org/${userProfile?.profilePicture}?shareable_link=468`}
             alt={userProfile?.userName}
             className="w-full h-full rounded-full object-cover"
           />
         ) : (
           <FaUserCircle className="w-full h-full text-black" />
         )}
-      </div>
+      </div> */}
     </div>
   </header>
 );

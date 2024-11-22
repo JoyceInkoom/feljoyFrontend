@@ -41,7 +41,7 @@ const ArticleDetails = () => {
         <h1 className="text-3xl font-bold text-indigo-900 mb-4">{article?.title}</h1>
         <div className="flex space-x-4">
           <div className="flex-4 p-4 bg-white/30 backdrop-blur-md rounded-lg shadow-md">
-            <img src={article?.media} alt={article?.title} className="w-full mb-4 rounded-lg" />
+            <img src={`https://savefiles.org/${article?.media}?shareable_link=468`} alt={article?.title} className="w-full mb-4 rounded-lg" />
             <div
               className="article-content"
               dangerouslySetInnerHTML={{ __html: article?.content }}

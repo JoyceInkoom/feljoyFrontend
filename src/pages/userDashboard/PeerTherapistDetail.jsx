@@ -37,7 +37,7 @@ const PeerTherapistDetail = () => {
           {/* Profile Section */}
           <div className="flex items-center space-x-4 mb-6">
             <img
-              src={therapist.profilePicture || 'default-profile-image.jpg'}
+              src={`https://savefiles.org/${therapist.profilePicture}?shareable_link=468` || 'default-profile-image.jpg'}
               alt={therapist.fullName}
               className="w-32 h-32 object-cover rounded-full border-4 border-blue-500 shadow-lg"
             />

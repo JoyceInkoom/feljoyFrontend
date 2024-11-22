@@ -66,7 +66,7 @@ const PeerTherapistsList = () => {
                 onClick={() => navigate(`/peer-therapist/${therapist.id}`)}
               >
                 <img
-                  src={therapist.profilePicture || 'default-image-url.jpg'}
+                  src={`https://savefiles.org/${therapist.profilePicture}?shareable_link=468` || 'default-image-url.jpg'}
                   alt={therapist.fullName}
                   className="w-full h-32 object-cover rounded-md"
                 />
