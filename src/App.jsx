@@ -24,7 +24,7 @@ import AddVideoForm from "./pages/items/AddVideoForm";
 import AddEbookForm from "./pages/items/AddEbookForm";
 import ArticleDetails from "./pages/items/ArticleDetails";
 import VideoDetails from "./pages/items/VideoDetails";
-import EbookDetails from "./pages/items/EBookDetails";
+import EbookDetails from "./pages/items/EbookDetails";
 import SharedWith from "./pages/items/SharedWith";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminLogin from "./pages/admin/AdminLogin";
