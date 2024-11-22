@@ -68,14 +68,15 @@ const Chatroom = () => {
       <div className="flex-1 overflow-y-auto ml-20 p-4"> 
         <h1 className="text-2xl text-center text-indigo-900 font-bold mb-4">Chats</h1>
         <div className="flex flex-col overflow-y-auto max-h-96">
-          {messages.map((message) => (
-            <div
-              key={message._id}
-              className={`w-fit p-2 mb-2 rounded-lg ${
-                message.sender === currentUser._id
-                  ? "bg-green-100 text-green-800 self-end"
-                  : "bg-blue-100 text-blue-800"
-              }`}
+        {messages.map((message) => (
+  <div
+    key={message._id}
+    className={`w-fit p-2 mb-2 rounded-lg ${
+      message.sender === currentUser._id
+        ? "bg-green-100 text-green-800 self-end"
+        : "bg-blue-100 text-blue-800 self-start"
+    }`}
+
             >
               <span>
                 <strong>
@@ -84,9 +85,9 @@ const Chatroom = () => {
                 </strong>
               </span>
               <span> {message.content}</span>
-              <span className="text-sm text-gray-600">{message.createdAt}</span>
+              <span className="text-sm text-indigo-600">{message.createdAt}</span>
               {message.sender === currentUser._id ? (
-                <span className="text-sm text-gray-600"> 
+                <span className="text-sm text-indigo-600"> 
                   {message.read ? 
                     (<>
                       <FontAwesomeIcon icon={faCheck} className="text-blue-600" />
@@ -95,7 +96,7 @@ const Chatroom = () => {
                   : ""}
                 </span>
               ) : (
-                <span className="text-sm text-gray-600"> </span>
+                <span className="text-sm text-indigo-600"> </span>
               )}
             </div>
           ))}

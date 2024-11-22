@@ -42,11 +42,11 @@ const ChatSessions = () => {
         {chatSessions.map((session) => (
           session.withUser && (
             <Link key={session.chatId} to={`/chatroom/${session.withUser.id}`}>
-              <div className="bg-indigo-500 p-4 mb-4 rounded-lg hover:bg-indigo-100 text-white">
-                <h2>
+              <div className="bg-indigo-900 p-4 mb-4 rounded-ee-full hover:bg-indigo-100 text-white">
+                <h2 className="font-bold">
                   {session.withUser.userName} 
                 </h2>
-                <p>Last Message: {session.lastMessage.content}</p>
+                <p className="font-bold">Last Message: {session.lastMessage.content}</p>
                 <p>Message Count: {session.messageCount}</p>
               </div>
             </Link>

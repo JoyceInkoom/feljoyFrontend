@@ -95,16 +95,18 @@ const Sidebar = () => {
             style={{ transform: "translate(25%, 25%)" }}
             onClick={() => window.location.assign("/profileupdate")}
           />
-          <FaCheckCircle
-            className={`absolute top-0 right-0 ${
-              userProfile?.role === "peer-therapist"
-                ? "text-orange-500"
-                : userProfile?.role === "professional-therapist"
-                ? "text-pink-500"
-                : "text-green-500"
-            } text-lg`}
-            style={{ transform: "translate(25%, -25%)" }}
-          />
+          {userProfile?.role !== "user" && (
+  <FaCheckCircle
+    className={`absolute top-0 right-0 ${
+      userProfile?.role === "peer-therapist"
+        ? "text-orange-500"
+        : userProfile?.role === "professional-therapist"
+        ? "text-pink-500"
+        : "text-green-500"
+    } text-lg`}
+    style={{ transform: "translate(25%, -25%)" }}
+  />
+)}
         </div>
         <h3 className="mt-4 text-lg font-bold">Welcome, {userProfile?.userName || "User"}</h3>
       </div>
