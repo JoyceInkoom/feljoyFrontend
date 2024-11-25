@@ -63,7 +63,7 @@ const Navbar = () => {
       </ul>
 
       {/* Language Selector */}
-      <div className="relative inline-block">
+      {/* <div className="relative inline-block">
         <button
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           className="bg-white text-black px-4 py-2 rounded inline-flex items-center"
@@ -85,7 +85,7 @@ const Navbar = () => {
             ))}
           </ul>
         )}
-      </div>
+      </div> */}
 
       {/* Signup Button */}
       <Link to="/signup" className="bg-white text-black px-4 py-2 rounded ml-4 hover:bg-blue-600 flex items-center">

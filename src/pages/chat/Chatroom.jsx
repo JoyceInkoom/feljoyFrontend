@@ -121,7 +121,7 @@ const Chatroom = () => {
         </form>
         {error && <div className="text-red-600">{error}</div>}
         <div className="mt-72">
-        <Link to="/chatroom" className="bg-indigo-800 p-2 mt-6 text-white mb-4 rounded-lg hover:bg-gray-200">
+        <Link to="/chatroom" className="bg-indigo-800 p-2 mt-2 text-white mb-4 rounded-lg hover:bg-gray-200">
           <button>Back to Chatroom</button>
         </Link></div>
         
